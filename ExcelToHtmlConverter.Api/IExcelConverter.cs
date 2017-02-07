@@ -9,5 +9,6 @@ namespace ExcelToHtmlConverter.Api
     public interface IExcelConverter
     {
         string ConvertWorksheet(string filename);
+        string ConvertWorksheet(string filename, string templateFile);
     }
 }
