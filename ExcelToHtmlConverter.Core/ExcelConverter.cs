@@ -20,6 +20,7 @@ namespace ExcelToHtmlConverter.Core
     public class ExcelConverter : IExcelConverter
     {
         private IRenderer renderer;
+        private const string DEFAULT_TEMPLATE = "Template\\template.html";
 
         public ExcelConverter() : this(new HtmlRenderer()) { }
 
@@ -27,8 +28,12 @@ namespace ExcelToHtmlConverter.Core
         {
             this.renderer = renderer;
         }
-
         public string ConvertWorksheet(string filename)
+        {
+            return ConvertWorksheet(filename, DEFAULT_TEMPLATE);
+        }
+
+        public string ConvertWorksheet(string filename, string templateFile)
         {
             var workbook = new Workbook { Name = "TestWorkbook" };
             var fileinfo = new FileInfo(filename);
@@ -140,7 +145,7 @@ namespace ExcelToHtmlConverter.Core
 
             workbook.Worksheets = worksheets;
             poiWorkbook = null;
-            return renderer.RenderWorkbook(workbook);
+            return renderer.RenderWorkbook(workbook, templateFile);
         }
     }
 }

@@ -12,16 +12,14 @@ namespace ExcelToHtmlConverter.Core
 {
     public interface IRenderer
     {
-        string RenderWorkbook(Workbook workbook);
+        string RenderWorkbook(Workbook workbook, string templateFile);
     }
 
     public class HtmlRenderer : IRenderer
     {
-        private const string TEMPLATE = "Template\\template.html";
-
-        public string RenderWorkbook(Workbook workbook)
+        public string RenderWorkbook(Workbook workbook, string templateFile)
         {
-            string template = File.ReadAllText(TEMPLATE);
+            string template = File.ReadAllText(templateFile);
             string html = Engine.Razor.RunCompile(template, "key", typeof(Workbook), workbook);
             return html;
         }

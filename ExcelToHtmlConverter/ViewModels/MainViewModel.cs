@@ -32,6 +32,7 @@ namespace ExcelToHtmlConverter.ViewModels
             this.CloseCommand = new RelayCommand(ExecuteClose);
             this.ConvertCommand = new RelayCommand(ExecuteConvert, (o) => !string.IsNullOrWhiteSpace(this.Filename));
             this.SelectFileCommand = new RelayCommand(ExecuteSelectFile);
+            this.SelectTemplateCommand = new RelayCommand(ExecuteSelectTemplate);
         }
 
         #endregion
@@ -49,6 +50,17 @@ namespace ExcelToHtmlConverter.ViewModels
             }
         }
 
+        private string template;
+        public string Template
+        {
+            get { return template; }
+            set
+            {
+                template = value;
+                NotifyPropertyChanged("Template");
+            }
+        }
+
         public ICommand InfoCommand { get; set; }
 
         public ICommand CloseCommand { get; set; }
@@ -56,6 +68,8 @@ namespace ExcelToHtmlConverter.ViewModels
         public ICommand ConvertCommand { get; set; }
 
         public ICommand SelectFileCommand { get; set; }
+
+        public ICommand SelectTemplateCommand { get; set; }
 
         #endregion
 
@@ -69,7 +83,7 @@ namespace ExcelToHtmlConverter.ViewModels
 
         private void ExecuteConvert(object obj)
         {
-            var html = excelConverter.ConvertWorksheet(Filename);
+            var html = string.IsNullOrEmpty(Template) ? excelConverter.ConvertWorksheet(Filename, Template) : excelConverter.ConvertWorksheet(Filename);
             var outputFile = string.Format("{0}.html", Filename);
             fileService.WriteToFile(outputFile, html);
             messageService.ShowInformation("Success", "Created " + outputFile);
@@ -86,6 +100,15 @@ namespace ExcelToHtmlConverter.ViewModels
             if (dialogService.GetFilename("Please provide the file to convert", out path, "Modern Excel files (*.xlsx)|*.xlsx|Old Excel files (*.xls)|*.xls"))
             {
                 Filename = path;
+            }
+        }
+
+        private void ExecuteSelectTemplate(object obj)
+        {
+            string path;
+            if (dialogService.GetFilename("Please provide the template file", out path))
+            {
+                Template = path;
             }
         }
 
