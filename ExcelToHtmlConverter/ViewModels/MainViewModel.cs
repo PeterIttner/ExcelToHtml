@@ -83,7 +83,7 @@ namespace ExcelToHtmlConverter.ViewModels
 
         private void ExecuteConvert(object obj)
         {
-            var html = string.IsNullOrEmpty(Template) ? excelConverter.ConvertWorksheet(Filename, Template) : excelConverter.ConvertWorksheet(Filename);
+            var html = string.IsNullOrEmpty(Template) ? excelConverter.ConvertWorksheet(Filename) : excelConverter.ConvertWorksheet(Filename, Template);
             var outputFile = string.Format("{0}.html", Filename);
             fileService.WriteToFile(outputFile, html);
             messageService.ShowInformation("Success", "Created " + outputFile);

@@ -62,12 +62,24 @@ namespace ExcelToHtmlConverterTest
         public void TestThat_ConvertCommand_CallsLib_AndService()
         {
             viewModel.Filename = "Filename";
+            viewModel.Template = null;
             Assert.IsTrue(viewModel.ConvertCommand.CanExecute(null));
 
             viewModel.ConvertCommand.Execute(null);
             converterMock.Verify(mock => mock.ConvertWorksheet(It.IsAny<string>()), Times.Once());
             fileServiceMock.Verify(mock => mock.WriteToFile(It.Is<string>(a => a == "Filename.html"), It.IsAny<string>()), Times.Once());
-            messageMock.Verify(mock => mock.ShowInformation(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+        }
+
+        [TestMethod]
+        public void TestThat_ConvertCommand_CallsLib_AndService_WithTemplate()
+        {
+            viewModel.Filename = "Filename";
+            viewModel.Template = "Template";
+            Assert.IsTrue(viewModel.ConvertCommand.CanExecute(null));
+
+            viewModel.ConvertCommand.Execute(null);
+            converterMock.Verify(mock => mock.ConvertWorksheet(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
+            fileServiceMock.Verify(mock => mock.WriteToFile(It.Is<string>(a => a == "Filename.html"), It.IsAny<string>()), Times.Once());
         }
 
         [TestMethod]
