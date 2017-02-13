@@ -1,38 +1,61 @@
 ﻿using ExcelToHtmlConverter.Api;
 using ExcelToHtmlConverter.Core.Model;
-using Microsoft.CSharp;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using RazorEngine;
-using RazorEngine.Templating;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelToHtmlConverter.Core
 {
     public class ExcelConverter : IExcelConverter
     {
+        #region Member
+
         private IRenderer renderer;
         private const string DEFAULT_TEMPLATE = "Template\\template.html";
 
+        #endregion
+
+        #region Ctor
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="ExcelConverter"/> class.
+        /// </summary>
         public ExcelConverter() : this(new HtmlRenderer()) { }
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="ExcelConverter"/> class.
+        /// </summary>
+        /// <param name="renderer">The renderer that should be used for conversion</param>
         public ExcelConverter(IRenderer renderer)
         {
             this.renderer = renderer;
         }
+
+        #endregion
+
+        #region Public Interface
+
+        /// <summary>
+        /// Converts the worksheet from the given file to a string.
+        /// </summary>
+        /// <param name="filename">The path to the worksheet file</param>
+        /// <returns>The converted worksheet as string</returns>
         public string ConvertWorksheet(string filename)
         {
             return ConvertWorksheet(filename, DEFAULT_TEMPLATE);
         }
 
+        /// <summary>
+        /// Converts the worksheet from the given file to a string.
+        /// Applies the given template file for the conversion.
+        /// </summary>
+        /// <param name="filename">The path to the worksheet file</param>
+        /// <param name="templateFile">The path to the template file that is used for the conversion</param>
+        /// <returns>The converted worksheet as string</returns>
         public string ConvertWorksheet(string filename, string templateFile)
         {
             var workbook = new Workbook { Name = "TestWorkbook" };
@@ -147,5 +170,8 @@ namespace ExcelToHtmlConverter.Core
             poiWorkbook = null;
             return renderer.RenderWorkbook(workbook, templateFile);
         }
+
+        #endregion
+
     }
 }

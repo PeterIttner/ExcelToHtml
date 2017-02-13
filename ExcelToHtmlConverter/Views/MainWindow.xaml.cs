@@ -1,20 +1,5 @@
-﻿using ExcelToHtmlConverter.Core;
-using ExcelToHtmlConverter.Services;
-using ExcelToHtmlConverter.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExcelToHtmlConverter.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExcelToHtmlConverter.Views
 {
@@ -23,6 +8,10 @@ namespace ExcelToHtmlConverter.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Creates a new instance of the <see cref="MainWindow"/> class.
+        /// Also sets the DataContext of the View to a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

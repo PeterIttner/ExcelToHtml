@@ -1,18 +1,16 @@
 ﻿using ExcelToHtmlConverter.Api;
 using ExcelToHtmlConverter.Common;
-using ExcelToHtmlConverter.Core;
 using ExcelToHtmlConverter.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace ExcelToHtmlConverter.ViewModels
 {
+    /// <summary>
+    /// MainViewModel that handles the complete business logic of the View.
+    /// </summary>
     public class MainViewModel : ModelBase
     {
         #region Memeber
@@ -22,10 +20,16 @@ namespace ExcelToHtmlConverter.ViewModels
         private IFileService fileService = DIContainer.Instance.Create<IFileService>();
         private IDialogService dialogService = DIContainer.Instance.Create<IDialogService>();
 
+        private string filename;
+        private string template;
+
         #endregion
 
         #region Ctor
 
+        /// <summary>
+        /// Creates a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
         public MainViewModel()
         {
             this.InfoCommand = new RelayCommand(ExecuteInfo);
@@ -39,7 +43,9 @@ namespace ExcelToHtmlConverter.ViewModels
 
         #region Public Interface
 
-        private string filename;
+        /// <summary>
+        /// Gets or sets the selected filename of the Excel file that should be converted.
+        /// </summary>
         public string Filename
         {
             get { return filename; }
@@ -50,7 +56,9 @@ namespace ExcelToHtmlConverter.ViewModels
             }
         }
 
-        private string template;
+        /// <summary>
+        /// Gets or sets the selected template file that should be used for the rendering.
+        /// </summary>
         public string Template
         {
             get { return template; }
@@ -61,24 +69,39 @@ namespace ExcelToHtmlConverter.ViewModels
             }
         }
 
+        /// <summary>
+        /// Displays the about information to the user.
+        /// </summary>
         public ICommand InfoCommand { get; set; }
 
+        /// <summary>
+        /// Closes the whole application
+        /// </summary>
         public ICommand CloseCommand { get; set; }
 
+        /// <summary>
+        /// Starts the converstion of the selected file.
+        /// Can only be called when a file has been selected.
+        /// </summary>
         public ICommand ConvertCommand { get; set; }
 
+        /// <summary>
+        /// Opens a dialog, so that the user can select the file to convert there.
+        /// </summary>
         public ICommand SelectFileCommand { get; set; }
 
+        /// <summary>
+        /// Opens a dialog, so that the user can select a custom template there.
+        /// </summary>
         public ICommand SelectTemplateCommand { get; set; }
 
         #endregion
 
         #region Command Handler
 
-
         private void ExecuteInfo(object obj)
         {
-            messageService.ShowInformation("About", buildAboutText());
+            messageService.ShowInformation("About", BuildAboutText());
         }
 
         private void ExecuteConvert(object obj)
@@ -116,7 +139,7 @@ namespace ExcelToHtmlConverter.ViewModels
 
         #region Private Helper
 
-        private string buildAboutText()
+        private string BuildAboutText()
         {
             var sb = new StringBuilder();
             sb.AppendLine("Excel to HTML Converter");
