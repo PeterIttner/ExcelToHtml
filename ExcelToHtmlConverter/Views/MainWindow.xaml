@@ -11,6 +11,26 @@
         ResizeMode="CanResizeWithGrip"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        
+        <!-- =============================
+        Styling 
+        ============================= -->
+        
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily"
+                    Value="Times New RomanX" />
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontFamily"
+                    Value="Times New RomanX" />
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontFamily"
+                    Value="Times New RomanX" />
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="5">
 
         <Grid.RowDefinitions>
@@ -27,7 +47,6 @@
                Content="Excel To HTML Converter"
                VerticalAlignment="Top"
                FontSize="24"
-               FontFamily="Comic Sans MS"
                HorizontalAlignment="Left">
             <Label.Effect>
                 <DropShadowEffect />
@@ -39,7 +58,6 @@
                 FontSize="14"
                 Width="35"
                 Height="30"
-                FontFamily="Comic Sans MS"
                 VerticalAlignment="Top"
                 Command="{Binding InfoCommand}" />
 
@@ -59,15 +77,15 @@
             </Grid.ColumnDefinitions>
 
             <!-- Inner Row 0 -->
-            
+
             <Label Grid.Row="0"
                    Grid.Column="0"
                    Content="Excel-File:"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   FontFamily="Comic Sans MS" />
+                   VerticalAlignment="Top" />
             <Border  Grid.Row="0"
                      Grid.Column="1"
+                     Margin="0 0 10 0"
                      HorizontalAlignment="Stretch"
                      BorderBrush="Black"
                      BorderThickness="1"
@@ -75,8 +93,7 @@
                 <TextBlock Text="{Binding Filename, UpdateSourceTrigger=PropertyChanged}"
                            TextWrapping="NoWrap"
                            HorizontalAlignment="Stretch"
-                           TextTrimming="CharacterEllipsis"
-                           FontFamily="Comic Sans MS" />
+                           TextTrimming="CharacterEllipsis" />
             </Border>
             <Button Grid.Row="0"
                     Grid.Column="2"
@@ -85,19 +102,18 @@
                     VerticalAlignment="Center"
                     Width="35"
                     Height="23"
-                    Command="{Binding SelectFileCommand}"
-                    FontFamily="Comic Sans MS" />
-            
+                    Command="{Binding SelectFileCommand}" />
+
             <!-- Inner Row 1 -->
-            
+
             <Label Grid.Row="1"
                    Grid.Column="0"
                    Content="Template-File:"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Top"
-                   FontFamily="Comic Sans MS" />
+                   VerticalAlignment="Top" />
             <Border  Grid.Row="1"
                      Grid.Column="1"
+                     Margin="0 0 10 0"
                      HorizontalAlignment="Stretch"
                      BorderBrush="Black"
                      BorderThickness="1"
@@ -105,8 +121,7 @@
                 <TextBlock Text="{Binding Template, UpdateSourceTrigger=PropertyChanged}"
                            TextWrapping="NoWrap"
                            HorizontalAlignment="Stretch"
-                           TextTrimming="CharacterEllipsis"
-                           FontFamily="Comic Sans MS" />
+                           TextTrimming="CharacterEllipsis" />
             </Border>
             <Button Grid.Row="1"
                     Grid.Column="2"
@@ -115,37 +130,33 @@
                     VerticalAlignment="Center"
                     Width="35"
                     Height="23"
-                    Command="{Binding SelectTemplateCommand}"
-                    FontFamily="Comic Sans MS" />
+                    Command="{Binding SelectTemplateCommand}" />
 
         </Grid>
 
         <!-- =============================
         Row 2
         ============================= -->
+        
         <Grid Grid.Row="2">
 
             <Button Content="Start Conversion"
-                    BorderBrush="Green"
-                    Background="Green"
-                    Foreground="White"
+                    BorderBrush="DarkGreen"
+                    Background="LightGreen"
+                    Foreground="Black"
                     BorderThickness="2"
                     Margin="0,0,0,15"
                     Padding="5"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
-                    
                     Command="{Binding ConvertCommand}"
-                    FontWeight="Bold"
-                    FontFamily="Comic Sans MS" />
+                    FontWeight="Bold" />
             <Button Content="Close"
                     HorizontalAlignment="Left"
                     Margin="0,0,20,15"
                     Padding="5"
                     VerticalAlignment="Bottom"
-                    Command="{Binding CloseCommand}"
-                    FontFamily="Comic Sans MS" />
+                    Command="{Binding CloseCommand}" />
         </Grid>
-
     </Grid>
 </Window>
