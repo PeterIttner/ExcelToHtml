@@ -16,19 +16,75 @@
         <!-- =============================
         Styling 
         ============================= -->
+
+        <!-- Highlight Button Style -->
+        <Style TargetType="{x:Type Button}"
+               x:Key="HighlightButtonStyle">
+            <Setter Property="FontFamily"
+                    Value="Segoe UI Symbol" />
+            <Setter Property="FontWeight"
+                    Value="Light" />
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="Background"
+                    Value="#FF008371" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="LightGray"
+                                Padding="5"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="#FF00D1B4" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
+        <!-- Default Button Style -->
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource HighlightButtonStyle}">
+            <Setter Property="Background"
+                    Value="Gray" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="DarkRed" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily"
-                    Value="Times New RomanX" />
+                    Value="Segoe UI Symbol" />
+            <Setter Property="FontWeight"
+                    Value="Light" />
+            <Setter Property="Foreground"
+                    Value="White" />
+            
         </Style>
         <Style TargetType="{x:Type Label}">
             <Setter Property="FontFamily"
-                    Value="Times New RomanX" />
+                    Value="Segoe UI Symbol" />
+            <Setter Property="Foreground"
+                    Value="White" />
         </Style>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="FontFamily"
-                    Value="Times New RomanX" />
+        <Style TargetType="{x:Type Grid}">
+            <Setter Property="Background"
+                    Value="DarkGray" />
         </Style>
+        
     </Window.Resources>
 
     <Grid Margin="5">
@@ -43,16 +99,33 @@
         Row 0
         ============================= -->
 
-        <Label Grid.Row="0"
-               Content="Excel To HTML Converter"
-               VerticalAlignment="Top"
-               FontSize="24"
-               HorizontalAlignment="Left">
-            <Label.Effect>
-                <DropShadowEffect />
-            </Label.Effect>
-        </Label>
-        <Button Content="?"
+        <WrapPanel Grid.Row="0" 
+                    Orientation="Vertical">
+            
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Excel To HTML Converter "
+                   VerticalAlignment="Top"
+                       FontFamily="Sageo UI Light"
+                   FontSize="30"
+                   HorizontalAlignment="Left">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="0" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="&#xE16F;"
+                       FontSize="20"
+                       Foreground="Green"/>
+            <TextBlock Text="&#xE27E;"
+                       FontSize="20" />
+            <TextBlock Text="&#xE2F1;"
+                       FontSize="20"
+                           Foreground="#FF008371" />
+            </WrapPanel>
+            <Border BorderThickness="0.5" BorderBrush="Gray" Margin="0 5 0 15" />
+        </WrapPanel>
+       
+        <Button Content="&#xE200;"
                 HorizontalAlignment="Right"
                 Grid.Row="0"
                 FontSize="14"
@@ -67,6 +140,7 @@
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -132,6 +206,15 @@
                     Height="23"
                     Command="{Binding SelectTemplateCommand}" />
 
+            <!-- Inner Row 2 -->
+
+            <TextBlock Grid.Row="2"
+                       Grid.Column="1"
+                       Text="(optional)"
+                       FontStyle="Italic"
+                       FontWeight="Light"
+                       />
+
         </Grid>
 
         <!-- =============================
@@ -140,18 +223,18 @@
         
         <Grid Grid.Row="2">
 
-            <Button Content="Start Conversion"
-                    BorderBrush="DarkGreen"
-                    Background="LightGreen"
-                    Foreground="Black"
+            <Button Content="&#xE1CA; Start Conversion"
+                    BorderBrush="Gray"
+                    Style="{StaticResource HighlightButtonStyle}"                    
                     BorderThickness="2"
                     Margin="0,0,0,15"
                     Padding="5"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right"
-                    Command="{Binding ConvertCommand}"
-                    FontWeight="Bold" />
-            <Button Content="Close"
+                    Command="{Binding ConvertCommand}" />
+
+            <Button Content="&#xE106; Quit"
+                    
                     HorizontalAlignment="Left"
                     Margin="0,0,20,15"
                     Padding="5"
