@@ -1,6 +1,8 @@
 # ExcelToHtml
 Converter that converts Microsoft Excel Workbooks into HTML webpages.
 
+![ExcelToHtml Logo](https://raw.githubusercontent.com/piah/exceltohtml/master/ExcelToHtmlConverter.Docs/logo.jpg)
+
 ## Project Modularization
 
 ### ExcelToHtmlConverter
@@ -25,8 +27,10 @@ msbuild -t:Clean,Build
 ```
 ## Screenshots
 
-![The UI of ExcelToHtml Converter](https://raw.githubusercontent.com/piah/exceltohtml/master/ExcelToHtmlConverter.Docs/screenshot_01.jpg)
-![An example result](https://raw.githubusercontent.com/piah/exceltohtml/master/ExcelToHtmlConverter.Docs/screenshot_02.jpg)
+![The UI of ExcelToHtml Converter](https://raw.githubusercontent.com/piah/exceltohtml/master/ExcelToHtmlConverter.Docs/screenshot_01.png)
+
+
+![An example result](https://raw.githubusercontent.com/piah/exceltohtml/master/ExcelToHtmlConverter.Docs/screenshot_02.png)
 
 ## Template
 
