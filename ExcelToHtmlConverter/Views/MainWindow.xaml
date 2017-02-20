@@ -9,7 +9,7 @@
         MinHeight="220"
         MinWidth="494"
         ResizeMode="CanResizeWithGrip"
-        ShowInTaskbar="False"
+        ShowInTaskbar="True"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         
